@@ -1,8 +1,9 @@
 const Admin = require("../../../../model/admin");
 const jwt = require("jsonwebtoken"); // importing jsonwebtoken
+const Appointment = require("../../../../model/appointment");
 module.exports.signUp = async (req, res) => {
   try {
-    //find doctor using the given username
+    //find admin using the given username
     let user = await Admin.findOne({ name: req.body.name });
 
     if (!user) {
@@ -26,7 +27,7 @@ module.exports.signUp = async (req, res) => {
 //login action for user
 module.exports.login = async (req, res) => {
   try {
-    //finding the doctor in database
+    //finding the admin in database
     let user = await Admin.findOne({ username: req.body.username });
 
     //check for the user password and user as well
@@ -50,4 +51,14 @@ module.exports.login = async (req, res) => {
       message: "Internal Server Error",
     });
   }
+};
+
+module.exports.showBooking = async (req, res) => {
+  try {
+    let appointment = await Appointment.find({}).populate("user");
+    return res.status(200).json({
+      message: "success",
+      data: appointment,
+    });
+  } catch (error) {}
 };

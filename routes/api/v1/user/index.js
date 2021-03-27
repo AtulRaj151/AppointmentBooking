@@ -15,5 +15,10 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   userController.check_availablity
 );
+router.get(
+  "/mybooking",
+  passport.authenticate("jwt", { session: false }),
+  userController.mybooking
+);
 
 module.exports = router;

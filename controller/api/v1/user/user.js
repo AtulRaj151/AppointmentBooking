@@ -77,7 +77,11 @@ module.exports.book = async (req, res) => {
     });
     if (!appointment) {
       // create new appointment
-      await Appointment.create(req.body);
+      await Appointment.create({
+        date: req.body.date,
+        time: req.body.time,
+        user: req.user._id,
+      });
       return res.status(200).json({
         message: "success",
       });
@@ -87,5 +91,15 @@ module.exports.book = async (req, res) => {
         message: "not available",
       });
     }
+  } catch (error) {}
+};
+module.exports.mybooking = async (req, res) => {
+  try {
+    let appt = await Appointment.find({ user: req.user._id });
+
+    return res.status(200).json({
+      message: "success",
+      data: appt,
+    });
   } catch (error) {}
 };
