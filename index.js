@@ -1,9 +1,14 @@
 const express = require("express");
 const app = express();
 const port = 8001;
+const db = require("./config/mongoose");
+const passport = require("passport");
+const passportJwt = require("./config/passport-jwt-strategy");
+const bodyParser = require("body-parser");
 
-// imports
-
+app.use(bodyParser.urlencoded());
+// imports modules
+// routes
 app.use("/", require("./routes"));
 
 // app listen on port
