@@ -5,6 +5,9 @@ const db = require("./config/mongoose");
 const passport = require("passport");
 const passportJwt = require("./config/passport-jwt-strategy");
 const bodyParser = require("body-parser");
+const cors = require("cors");
+
+app.use(cors());
 
 app.use(bodyParser.urlencoded());
 // imports modules

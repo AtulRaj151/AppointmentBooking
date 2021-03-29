@@ -2,19 +2,21 @@ const User = require("../../../../model/user");
 const jwt = require("jsonwebtoken"); // importing jsonwebtoken
 const Appointment = require("../../../../model/appointment");
 module.exports.signUp = async (req, res) => {
+  console.log("In SignUp starts", req.body);
   try {
     //find doctor using the given username
-    let user = await User.findOne({ name: req.body.name });
+    let user = await User.findOne({ email: req.body.email });
 
     if (!user) {
       //if username is not found then create new username
       await User.create(req.body);
-      return res.json(200, {
+      console.log("SignUp ends");
+      return res.status(200).json({
         message: "success",
       });
     } else {
       // if user already present then return response
-      return res.json(200, {
+      return res.status(200).json({
         message: "user already registerd",
       });
     }
@@ -39,7 +41,7 @@ module.exports.login = async (req, res) => {
     }
     //if user found  then send tokens to user
     return res.json(200, {
-      message: "success,here is your Token, Keep it Safe!!",
+      message: "success",
       token: jwt.sign(user.toJSON(), "AppointmentBookingSecret", {
         expiresIn: 1000000,
       }),
@@ -64,7 +66,7 @@ module.exports.check_availablity = async (req, res) => {
       });
     } else {
       return res.status(200).json({
-        message: "available",
+        message: "success",
       });
     }
   } catch (error) {}
@@ -82,6 +84,7 @@ module.exports.book = async (req, res) => {
         time: req.body.time,
         user: req.user._id,
       });
+      console.log("triggered");
       return res.status(200).json({
         message: "success",
       });
