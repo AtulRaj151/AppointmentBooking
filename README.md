@@ -23,5 +23,5 @@ An Appointment Booking website Backend
 # Installation
  - clone
  - npm install
- - install mongodb
+ - install mongodb in your environment
  - npm start
