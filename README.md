@@ -6,10 +6,10 @@ An Appointment Booking website Backend
  - User
    - http://localhost:8001/api/v1/user/signup
    - http://localhost:8001/api/v1/user/signin
-   - http://localhost:8001/api/v1/user/book
-   - http://localhost:8001/api/v1/user/check
+   - http://localhost:8001/api/v1/user/book (booking an appointment)
+   - http://localhost:8001/api/v1/user/check (checking availability of an appointment)
  - Admin
-   - http://localhost:8001/api/v1/admin/appointment 
+   - http://localhost:8001/api/v1/admin/appointment (shows all apointments of user)
    - http://localhost:8001/api/v1/admin/signup
    - http://localhost:8001/api/v1/admin/signin
  # Framework
